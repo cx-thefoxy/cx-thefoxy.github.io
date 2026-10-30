@@ -226,6 +226,47 @@
   @media (max-width:640px){.hero.wrap,.block.wrap{padding-left:16px;padding-right:16px}}
 
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none !important}}
+
+  /* ===== Animations (added 2026-10-30) ===== */
+  @keyframes hero-up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes float-soft{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  @keyframes dot-ping{0%{box-shadow:0 0 0 0 rgba(47,158,99,.45)}70%{box-shadow:0 0 0 10px rgba(47,158,99,0)}100%{box-shadow:0 0 0 0 rgba(47,158,99,0)}}
+  @keyframes eq-bounce{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  @keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(188,69,32,.25)}50%{box-shadow:0 0 0 10px rgba(188,69,32,0)}}
+  @keyframes gradient-drift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .hero .status{animation:hero-up .7s ease both}
+  .hero h1{animation:hero-up .8s .08s ease both}
+  .hero-lede{animation:hero-up .8s .16s ease both}
+  .hero-actions{animation:hero-up .8s .24s ease both}
+  .hero-meta{animation:hero-up .8s .32s ease both}
+  .portrait-card{animation:hero-up .9s .2s ease both}
+  .portrait-photo{animation:float-soft 6s ease-in-out infinite}
+  .dot{animation:dot-ping 2.2s ease-out infinite}
+  .btn.accent{animation:glow-pulse 3.5s ease-in-out infinite}
+  .hero{position:relative}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(420px 220px at 15% 0%,rgba(188,69,32,.12),transparent 70%),radial-gradient(420px 220px at 90% 20%,rgba(35,72,58,.12),transparent 70%);background-size:200% 200%;animation:gradient-drift 14s ease-in-out infinite}
+  html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  html.js .reveal.in{opacity:1;transform:none}
+  html.js .reveal.d1{transition-delay:.08s} html.js .reveal.d2{transition-delay:.16s} html.js .reveal.d3{transition-delay:.24s}
+  .nav{transition:box-shadow .3s ease}
+  .nav.scrolled{box-shadow:0 8px 30px rgba(23,23,19,.12)}
+  .brand-mark{transition:transform .35s ease}
+  .brand:hover .brand-mark{transform:rotate(-6deg) scale(1.08)}
+  .nav-links a{position:relative}
+  .nav-links a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;background:var(--accent);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+  .card,.song-card,.empty{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+  .card:hover,.song-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line-strong)}
+  .btn{transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .eq{display:inline-flex;align-items:flex-end;gap:3px;height:18px;margin-bottom:10px}
+  .eq span{display:block;width:4px;height:100%;border-radius:2px;background:var(--accent);transform-origin:bottom;animation:eq-bounce 1s ease-in-out infinite}
+  .eq span:nth-child(2){animation-delay:.15s} .eq span:nth-child(3){animation-delay:.3s} .eq span:nth-child(4){animation-delay:.45s}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+    html.js .reveal{opacity:1;transform:none}
+  }
+
 </style>
 </head>
 <body>
@@ -284,7 +325,7 @@
     </div>
   </div>
 
-  <section class="block wrap" id="about">
+  <section class="block wrap reveal" id="about">
     <div class="sec-head">
       <div>
         <div class="sec-label">01 — About</div>
@@ -292,12 +333,12 @@
       </div>
     </div>
     <div class="about-grid">
-      <article class="card">
+      <article class="card reveal d1">
         <h3>Hello, I’m Behradi</h3>
         <p>I’m <strong>Behradi</strong>. This site is my personal home on the web — a portfolio and a blog in one place.</p>
         <p>For now, the fastest way to reach me is by email at <strong>cx.thefoxy@gmail.com</strong>.</p>
       </article>
-      <article class="card">
+      <article class="card reveal d1">
         <h3>At a glance</h3>
         <ul class="fact-list">
           <li><span>Name</span><b>Behradi</b></li>
@@ -307,7 +348,7 @@
     </div>
   </section>
 
-  <section class="block wrap" id="work">
+  <section class="block wrap reveal" id="work">
     <div class="sec-head">
       <div>
         <div class="sec-label">02 — Portfolio</div>
@@ -315,14 +356,14 @@
         <p>My portfolio will live here.</p>
       </div>
     </div>
-    <div class="empty">
+    <div class="empty reveal d1">
       <div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
       <b>No projects yet</b>
       <p>Empty for now — new work will be added here. Want to get in touch in the meantime? Email me at <a href="mailto:cx.thefoxy@gmail.com">cx.thefoxy@gmail.com</a>.</p>
     </div>
   </section>
 
-  <section class="block wrap" id="blog">
+  <section class="block wrap reveal" id="blog">
     <div class="sec-head">
       <div>
         <div class="sec-label">03 — Blog</div>
@@ -330,14 +371,14 @@
         <p>My blog posts will live here.</p>
       </div>
     </div>
-    <div class="empty">
+    <div class="empty reveal d1">
       <div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
       <b>No posts yet</b>
       <p>Empty for now — nothing has been published here yet. Check back later.</p>
     </div>
   </section>
 
-  <section class="block wrap" id="music">
+  <section class="block wrap reveal" id="music">
     <div class="sec-head">
       <div>
         <div class="sec-label">04 — Music</div>
@@ -345,9 +386,9 @@
         <p>One track that feels like my personality.</p>
       </div>
     </div>
-    <div class="song-card">
+    <div class="song-card reveal">
       <div>
-        <div class="song-kicker">The song</div>
+        <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="song-kicker">The song</div>
         <h3>Dracula (with JENNIE)</h3>
         <p class="song-artists">Tame Impala, JENNIE</p>
         <p class="song-note">Press play — this is the one that sounds like me.</p>
@@ -360,7 +401,7 @@
     </div>
   </section>
 
-  <section class="wrap" id="contact">
+  <section class="wrap reveal" id="contact">
     <div class="contact">
       <div>
         <h2>Let’s talk.</h2>
@@ -448,5 +489,24 @@
   }
 })();
 </script>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  window.addEventListener('scroll', function(){
+    var nav = document.getElementById('siteNav');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, {passive:true});
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold: 0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+
 </body>
 </html>
